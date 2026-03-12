@@ -27,7 +27,7 @@ void compute() {
 }
 
 int main() {
-	// ※ 주의: 숫자와 연산자 사이에 반드시 공백이 있어야 합니다.
+
 	char str[] = "12.5 + ( 7.5 * 2 )";
 	char* ptr = strtok(str, " ");
 
