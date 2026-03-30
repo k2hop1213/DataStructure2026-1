@@ -46,7 +46,7 @@ int delete(int pos) {
 
 	before->next = cur->next;
 	free(cur);
-	return res;;
+	return res;
 }
 void print_list(char* msg)
 {
