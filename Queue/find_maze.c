@@ -4,14 +4,14 @@
 #define SZ 10005
 /*
 
-¿¹Á¦ ÀÔ·Â 1
+ì˜ˆì œ ì…ë ¥ 1
 4 6
 101111
 101010
 101011
 111011
 
-¿¹Á¦ ÀÔ·Â 2
+ì˜ˆì œ ì…ë ¥ 2
 7 7
 1011111
 1110001
@@ -21,24 +21,24 @@
 1010001
 1111111
 
-¿¹Á¦ ÀÔ·Â 3
+ì˜ˆì œ ì…ë ¥ 3
 3 3
 111
 000
 111
 */
-int board[105][105];//¹Ì·Î¸¦ ÀúÀåÇÒ ¹è¿­
-int vis[105][105]; //¹æ¹® ¿©ºÎ¸¦ ÀúÀåÇÏ´Â ¹è¿­
-int dist[105][105]; //°Å¸®¸¦ ÀúÀåÇÏ´Â ¹è¿­
+int board[105][105];//ë¯¸ë¡œë¥¼ ì €ì¥í•  ë°°ì—´
+int vis[105][105]; //ë°©ë¬¸ ì—¬ë¶€ë¥¼ ì €ì¥í•˜ëŠ” ë°°ì—´
+int dist[105][105]; //ê±°ë¦¬ë¥¼ ì €ì¥í•˜ëŠ” ë°°ì—´
 int dx[4] = { 1,0,-1,0 };
 int dy[4] = { 0,1,0,-1 };
 
-typedef struct {// C++¿¡¼­ »ç¿ëÇÒ ¼ö ÀÖ´Â pair<int,int>¸¦ c¾ğ¾î ±¸Á¶Ã¼·Î Á¤ÀÇ
+typedef struct {
 	int x;
 	int y;
 }pii;
 pii chase[105][105];
-pii deque[SZ];//±¸Á¶Ã¼ ¹è¿­·Î ¿øÇü µ¥Å© ±¸Çö
+pii deque[SZ];//êµ¬ì¡°ì²´ ë°°ì—´ë¡œ ì›í˜• ë°í¬ êµ¬í˜„
 int front, rear;
 
 int isEmpty() { return front == rear; }
@@ -79,10 +79,10 @@ void display_maze(int n, int m, int cur_x, int cur_y) {
 	system("cls");
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= m; j++) {
-			if (i == cur_x && j == cur_y) printf("Y"); // ÇöÀç À§Ä¡
-			else if (board[i][j] == 0) printf("X");    // º®
-			else if (vis[i][j]) printf(".");           // ¹æ¹®ÇÑ °÷
-			else printf("0");                          // ºó ±æ
+			if (i == cur_x && j == cur_y) printf("Y"); // í˜„ì¬ ìœ„ì¹˜
+			else if (board[i][j] == 0) printf("X");    // ë²½
+			else if (vis[i][j]) printf(".");           // ë°©ë¬¸í•œ ê³³
+			else printf("0");                          // ë¹ˆ ê¸¸
 		}
 		printf("\n");
 	}
@@ -99,8 +99,8 @@ int main() {
 			scanf("%1d", &board[i][j]);
 		}
 	}
-	//½ÃÀÛÀº 1,1 °íÁ¤ 
-	//³¡Àº n,m °íÁ¤
+	//ì‹œì‘ì€ 1,1 ê³ ì • 
+	//ëì€ n,m ê³ ì •
 	pii a = { 1,1 };
 	pii end = { -1,-1 };
 	vis[1][1] = 1;
@@ -110,7 +110,7 @@ int main() {
 	while (!isEmpty()) {
 		pii cur = pop_front();
 
-		if (cur.x == n && cur.y == m) { end = cur;  break; } //¹Ì·Î ³¡¿¡ µµ´ŞÇÏ¿´À¸¸é break
+		if (cur.x == n && cur.y == m) { end = cur;  break; } //ë¯¸ë¡œ ëì— ë„ë‹¬í•˜ì˜€ìœ¼ë©´ break
 		display_maze(n, m, cur.x, cur.y);
 
 		for (int dir = 0; dir < 4; dir++) {
@@ -129,7 +129,7 @@ int main() {
 
 
 	}
-	//¿ªÃßÀûÀ» ÅëÇØ °æ·Î¸¦ °Å²Ù·Î Ãâ·Â
+	//ì—­ì¶”ì ì„ í†µí•´ ê²½ë¡œë¥¼ ê±°ê¾¸ë¡œ ì¶œë ¥
 	if (end.x != -1 && end.y != -1) {
 		pii temp = end;
 		while (temp.x != -1) {
@@ -138,7 +138,7 @@ int main() {
 		}
 	}
 	if (dist[n][m])printf("%d", dist[n][m]);
-	else printf("¹Ì·ÎÅ»Ãâ ½ÇÆĞ!!!!!");
+	else printf("ë¯¸ë¡œíƒˆì¶œ ì‹¤íŒ¨!!!!!");
 
 	return 0;
 }
