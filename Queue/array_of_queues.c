@@ -76,7 +76,7 @@ int main() {
 	int* res = calloc(n + 1, sizeof(int));
 	for (int i = 0; i < m; i++) {
 		int t;
-		sscanf("%d", &t);
+		scanf("%d", &t);
 		res[dequeue(&q[t])]++;
 		
 	}
