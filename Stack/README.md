@@ -21,6 +21,7 @@
 
 - 백준 2493 탑 문제 https://www.acmicpc.net/problem/2493
 - 백준 10799 쇠막대기 문제 (근데 이건 괄호의 값이랑 비슷한데 더 쉬운거라.. ) https://www.acmicpc.net/problem/10799
-- 백준 1874 스택 수열 문제 https://www.acmicpc.net/problem/1874
+- 백준 1874 스택 수열 문제https://www.acmicpc.net/problem/1874
+- 백준 22343 괄호의 값 비교 문제 (2의 거듭제곱 때문에 큰 수 연산을 써야하는데 나올려나..)https://www.acmicpc.net/problem/22343
 
 총평 : 그러나 교재에 괄호검사와 후위표기식이 나오기 때문에 그거에서 베리에이션을 만들어서 내실거 같음, stack은 출제된지 오래됐기 때문에 괄호의 값처럼 어려운 문제가 충분히 나올 수 있다.
