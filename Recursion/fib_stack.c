@@ -39,13 +39,13 @@ int fib_stack(int N) {
 			Frame f1 = { p->n - 1,0,0 };
 			push(f1);
 		}
-		else if (p->state == 1) {
+		else if (p->state == 1) { // 다음 단계가 있으므로 result에 저장해야함
 			p->result = res;//부분 결과 저장
 			p->state = 2;// fib_stack(n - 2)을 호출한 상태
 			Frame f1 = { p->n - 2,0,0 };
 			push(f1);
 		}
-		else if (p->state == 2) {
+		else if (p->state == 2) {// 이제 돌아갈일 남음
 			res += p->result;
 			pop();
 		}
