@@ -34,7 +34,14 @@ void enqueue(int** queue,int* front, int* rear, int* size, int data) {
 
 		*queue = realloc(*queue, sizeof(int) * (*size));
 
-		if (*front > *rear) {
+		if (*front > *rear) { 
+			/*
+			예를 들어 5   2 3 4 라고 하면 확장할 때 5 (4칸)  2 3 4로 만들기 위함 (2,3,4 뒤로 복사)
+					  r f						   r       f
+			만약에 그냥   1 2 3 4 이렇게 있으면 그냥 확장해서 쓰면 됨 
+						f       r
+			결론 : rear가 앞으로 다시 돌아왔는지를 확인해야한다.
+			*/
 
 			for (int i = *front + 1; i < temp ; i++) {
 				(*queue)[i + temp] = (*queue)[i];
