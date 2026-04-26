@@ -43,11 +43,14 @@ void enqueue(int** queue,int* front, int* rear, int* size, int data) {
 			결론 : rear가 앞으로 다시 돌아왔는지를 확인해야한다.
 			*/
 
-			for (int i = *front + 1; i < temp ; i++) {
-				(*queue)[i + temp] = (*queue)[i];
+			int cnt = temp - (*front + 1);
+
+			for (int i = 1; i <= cnt; i++) {
+				(*queue)[*size - i] = (*queue)[temp - i];
 			}
+			// front를 이동시킨 데이터 바로 앞칸으로 정확히 지정
+			*front = *size - cnt - 1;
 		}
-		*front += temp;
 	}
 	*rear = (*rear + 1) % *size;
 	(*queue)[*rear] = data;
