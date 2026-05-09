@@ -46,8 +46,10 @@ int heap_pop() {
 	heap_size--;
 	int i = 1;
 	while (LEFT(i) <= heap_size) {
-		int child = (LEFT(i) < heap_size && KEY(LEFT(i)) > KEY(RIGHT(i)))
-			? LEFT(i) : RIGHT(i);
+		int child = LEFT(i);
+		if (RIGHT(i) <= heap_size && KEY(RIGHT(i)) > KEY(LEFT(i))) {
+			child = RIGHT(i);
+		}
 		if (KEY(i) > KEY(child)) break;
 		A[i] = A[child];
 		A[child] = last;
