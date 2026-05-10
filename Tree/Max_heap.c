@@ -67,9 +67,12 @@ void print_heap()
 
 int is_max_heap(int arr[], int len)
 {
-	for (int i = 1; i <= len / 2; i++)
-		if (arr[i] < arr[LEFT(i)] || arr[i] < arr[RIGHT(i)])
-			return 0;   
+	for (int i = 1; i <= len / 2; i++) {
+		if (arr[i] < arr[LEFT(i)])
+			return 0;
+		if (RIGHT(i) <= len && arr[i] < arr[RIGHT(i)])
+			return 0;
+	}
 	return 1;          
 }
 int main() {
@@ -77,7 +80,7 @@ int main() {
 	int data[] = { 2, 5, 4, 8, 9, 3, 7, 3 };
 	init_heap();
 
-	printf("\n최대 힙 삭제 연산 테스트\n");
+	printf("\n최대 힙 삽입 연산 테스트\n");
 	for (int i = 0; i < 8; i++) {
 		heap_push(data[i]);
 		printf("%2d ---> ", data[i]);
@@ -92,7 +95,7 @@ int main() {
 
 
 	int a[] = { 0, 9, 7, 6, 5, 4, 3, 2, 2, 1, 3 }; // 최대힙 맞음
-	int b[] = { 0, 9, 7, 6, 5, 3, 3, 2, 2, 1, 4 }; // 최대힙 맞음
+	int b[] = { 0, 9, 7, 6, 5, 3, 3, 2, 2, 1, 4 }; // 최대힙 아님
 	printf("a[]: 최대힙 %s\n", is_max_heap(a, 11) ? "맞음" : "아님");
 	printf("b[]: 최대힙 %s\n", is_max_heap(b, 11) ? "맞음" : "아님");
 
