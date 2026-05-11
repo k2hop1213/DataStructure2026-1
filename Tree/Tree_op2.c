@@ -108,3 +108,95 @@ int path_length_all(TNode* root) {
 	return path_length_helper(root, 0);
 }
 
+
+TNode* create_node(int data, TNode* left, TNode* right) {
+	TNode* new_node = (TNode*)malloc(sizeof(TNode));
+	new_node->data = data;
+	new_node->left = left;
+	new_node->right = right;
+	return new_node;
+}
+
+void free_tree(TNode* root) {
+	if (root == NULL) return;
+	free_tree(root->left);
+	free_tree(root->right);
+	free(root);
+}
+
+void run_test(TNode* root, const char* tree_name) {
+	printf("=== [%s] ===\n", tree_name);
+
+	init_queue();
+
+	printf("1. 포화 이진 트리(Full)   : %s\n", is_full_tree(root) ? "O (Yes)" : "X (No)");
+	printf("2. 완전 이진 트리(Complete): %s\n", is_complete_tree(root) ? "O (Yes)" : "X (No)");
+	printf("3. 균형 이진 트리(Balanced): %s\n", is_balanced_tree(root) ? "O (Yes)" : "X (No)");
+	printf("4. 모든 경로의 길이 합     : %d\n\n", path_length_all(root));
+}
+
+int main() {
+	/*
+	   [트리 1] 포화 이진 트리 (Perfect Binary Tree)
+			 1
+		   /   \
+		  2     3
+		 / \   / \
+		4   5 6   7
+	*/
+	TNode* tree1 = create_node(1,
+		create_node(2, create_node(4, NULL, NULL), create_node(5, NULL, NULL)),
+		create_node(3, create_node(6, NULL, NULL), create_node(7, NULL, NULL))
+	);
+	run_test(tree1, "트리 1: 포화 이진 트리");
+
+	/*
+	   [트리 2] 완전 이진 트리 (Complete Binary Tree) - 포화 트리는 아님
+			 1
+		   /   \
+		  2     3
+		 / \   /
+		4   5 6  (7이 빠짐)
+	*/
+	TNode* tree2 = create_node(1,
+		create_node(2, create_node(4, NULL, NULL), create_node(5, NULL, NULL)),
+		create_node(3, create_node(6, NULL, NULL), NULL)
+	);
+	run_test(tree2, "트리 2: 완전 이진 트리 (포화X)");
+
+	/*
+	   [트리 3] 균형 이진 트리 (Balanced Binary Tree) - 완전/포화 트리는 아님
+			 1
+		   /   \
+		  2     3
+		 /       \
+		4         7
+	*/
+	TNode* tree3 = create_node(1,
+		create_node(2, create_node(4, NULL, NULL), NULL),
+		create_node(3, NULL, create_node(7, NULL, NULL))
+	);
+	run_test(tree3, "트리 3: 균형 이진 트리 (완전X, 포화X)");
+
+	/*
+	   [트리 4] 불균형 트리 (Unbalanced Binary Tree) - 왼쪽으로 치우침
+			 1
+		   /
+		  2
+		 /
+		4
+	*/
+	TNode* tree4 = create_node(1,
+		create_node(2, create_node(4, NULL, NULL), NULL),
+		NULL
+	);
+	run_test(tree4, "트리 4: 불균형 이진 트리");
+
+	// 동적 할당 메모리 해제
+	free_tree(tree1);
+	free_tree(tree2);
+	free_tree(tree3);
+	free_tree(tree4);
+
+	return 0;
+}
