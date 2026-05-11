@@ -95,7 +95,7 @@ int is_balanced_tree(TNode* root) {
 
 	return is_balanced_tree(root->left) && is_balanced_tree(root->right);
 }
-//모든 경로의 길이의 구하기
+//모든 경로의 길이 구하기
 int path_length_helper(TNode* root, int level) {
 	if (root == NULL)
 		return 0;
