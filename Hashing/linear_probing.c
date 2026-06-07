@@ -3,6 +3,13 @@
 #include <string.h>
 #define M 10000
 int table[M];
+void print_lp(const char* msg)  // 테이블 출력을 위한 함수
+{
+    printf("%s: ", msg);
+    for (int i = 0; i < M; i++)
+        printf("[%2d] ", table[i]);
+    printf("\n");
+}
 int hashFn(int key) { return key % M; }
 int hashFn2(int key, int part) {
 	if (key <= 0 || part <= 0) return 0;
@@ -74,4 +81,19 @@ int delete_lp(int key) {
 		i = (i + 1) % M;
 	}
 	return -1;
+}
+int main()
+{
+    Entry data[9] = { 45, 27, 88, 9, 71, 60, 46, 38, 24 };
+    init_lp();
+    print_lp("삽입전");
+    for (int i = 0; i < 9; i++) {
+        insert_lp(data[i]);
+        print_lp(" ");
+    }
+    printf("46탐색: %d\n", search_lp(46));
+    printf("39탐색: %d\n", search_lp(39));
+    delete_lp(60); print_lp("60삭제");
+    delete_lp(46); print_lp("46삭제");
+	return 0;
 }
