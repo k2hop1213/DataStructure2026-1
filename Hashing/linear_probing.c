@@ -6,7 +6,6 @@ int table[M];
 int hashFn(int key) { return key % M; }
 int hashFn2(int key, int part) {
 	if (key <= 0 || part <= 0) return 0;
-
 	int len = 0;
 	int temp = key;
 	while (temp > 0) {
@@ -14,18 +13,26 @@ int hashFn2(int key, int part) {
 		len++;
 	}
 
-	int size = (len + part - 1) / part; // 한 사이즈의 크기
-
-	int cut = 1;
-	for (int i = 0; i < size; i++) {
-		cut *= 10;
-	}
+	int size = len / part;
+	if (size == 0) size = 1;
+	if (size == len) return -1;
 
 	int res = 0;
-	while (key > 0) {
-		res += key % cut;  
-		key /= cut;        
+
+
+	for (int i = 0; i < part - 1; i++) {
+
+		int cut = 1;
+		for (int j = 0; j < len - size; j++) {
+			cut *= 10;
+		}
+
+		res += key / cut; 
+		key %= cut;       
+		len -= size;          
 	}
+
+	res += key;
 
 	return res;
 }
