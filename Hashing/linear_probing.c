@@ -36,24 +36,6 @@ int hashFn2(int key, int part) {
 
 	return res;
 }
-
-int stringFolding(char* key) {
-	int hash = 0;
-	int len = strlen(key);
-
-	// 4글자씩 묶어서 하나의 정수로 변환 후 더하기
-	for (int i = 0; i < len; i += 4) {
-		int val = 0;
-		for (int j = 0; j < 4; j++) {
-			val <<= 8; // 8비트씩 왼쪽으로 밀어줍니다 (자릿수 이동)
-			if (i + j < len) {
-				val += key[i + j];
-			}
-		}
-		hash += val;
-	}
-	return hash;
-}
 void init_lp() {
 	for (int i = 0; i < M; i++)
 		table[i] = 0;
